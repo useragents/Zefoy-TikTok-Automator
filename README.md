@@ -2,7 +2,7 @@
 <div align="center">
   
 # Zefoy TikTok Automator
-Automate TikTok follower bot, like bot, share bot, view bot and more using selenium. Click here to report bugs.
+Automate TikTok follower bot, like bot, share bot, view bot and more using selenium. Click <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">here</a> to report bugs.
 
 ![image](https://user-images.githubusercontent.com/103281345/166081404-2ca2610e-90d7-44ee-bda5-66bb714dde24.png)
  
@@ -18,8 +18,8 @@ Automate TikTok follower bot, like bot, share bot, view bot and more using selen
 1. Download ZIP here and extract the ZIP
 2. Install requirements.txt by typing `pip install -r requirements.txt` in Command Prompt
 3. Download Google Chrome
-4. Download a Chrome driver that matches your Chrome version. Download chromedriver here
-5. You must download the correct chromedriver that matches your Chrome version. Check out your version here.
+4. Download a Chrome driver that matches your Chrome version. Download a chromedriver <a href="https://chromedriver.chromium.org/downloads">here</a>.
+5. You must download the correct chromedriver that matches your Chrome version. Check out your version<a href="https://www.google.com/chrome/update/">here</a>.
 
 ### Please note
 
