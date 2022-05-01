@@ -5,9 +5,12 @@ try:
     import time, os, ctypes, requests
     from colorama import Fore, init
     import warnings, selenium, platform
+    import chromedriver_autoinstaller
+
 except ImportError:
     input("Error while importing modules. Please install the modules in requirements.txt")
 
+chromedriver_autoinstaller.install()
 init(convert = True, autoreset = True)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -29,7 +32,7 @@ ascii_text = f"""{Fore.RED}
 """
 
 class automator:
-    
+
     def __init__(self):
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
@@ -57,7 +60,7 @@ class automator:
                 self.status.update({xpath: "[OFFLINE]"})
             else:
                 self.status.update({xpath: ""})
-    
+
     def check_for_captcha(self):
         while True:
             try:
@@ -75,7 +78,7 @@ class automator:
         if status == "Success":
             colour = Fore.GREEN
         return f"                {Fore.WHITE}[{colour}{status}{Fore.WHITE}]"
-    
+
     def update_ascii(self):
         options = f"""
 {self.console_msg("1")} Follower Bot {Fore.RED}{self.status["followers"]}
@@ -84,7 +87,7 @@ class automator:
 {self.console_msg("4")} Share Bot {Fore.RED}{self.status["shares"]}
         """
         return ascii_text + options
-    
+
     def check_url(self, url):
         redirect = True
         if "vm.tiktok.com/" in url:
@@ -126,7 +129,7 @@ class automator:
             sleep_duration = self.convert(minutes, seconds)
             return sleep_duration, output
         return element.text, None
-    
+
     def update_cooldown(self, sleep_time, bot, rl = False):
         cooldown = sleep_time
         while True:
@@ -138,7 +141,7 @@ class automator:
             self.update_title(bot, cooldown, rl)
             if cooldown == 0:
                 break
-    
+
     def wait_for_ratelimit(self, arg, div):
         time.sleep(1)
         duration, output = self.check_submit(div)
@@ -156,7 +159,7 @@ class automator:
             time.sleep(0.5)
         except:
             pass
-        enter_link_xpath = f"/html/body/div[4]/div[{div}]/div/form/div/input" 
+        enter_link_xpath = f"/html/body/div[4]/div[{div}]/div/form/div/input"
         link = self.driver.find_element_by_xpath(enter_link_xpath)
         link.clear()
         link.send_keys(video_url)
@@ -164,7 +167,7 @@ class automator:
         time.sleep(0.8)
         send_button_xpath = f"/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button"
         try:
-            self.driver.find_element_by_xpath(send_button_xpath).click() 
+            self.driver.find_element_by_xpath(send_button_xpath).click()
         except selenium.common.exceptions.NoSuchElementException:
             self.wait_for_ratelimit(bot, div)
             self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/form/div/div/button").click() #Search button
@@ -225,13 +228,13 @@ class automator:
         self.check_for_captcha()
         self.check_status()
         self.start()
-    
+
     def error(self, error):
         print(ascii_text)
         print(f"{self.console_msg('Error')} {error}")
         time.sleep(5)
         os._exit(0)
-    
+
     def start(self):
         os.system(clear)
         print(self.update_ascii())
