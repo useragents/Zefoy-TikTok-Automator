@@ -15,7 +15,7 @@ Automate TikTok follower bot, like bot, share bot, view bot and more using selen
 ### Usage
 
 
-1. Download ZIP here and extract the ZIP
+1. Download ZIP <a href="https://github.com/useragents/Zefoy-TikTok-Automator/archive/refs/heads/main.zip">here</a> and extract the ZIP
 2. Install requirements.txt by typing `pip install -r requirements.txt` in Command Prompt
 3. Download Google Chrome
 4. Download a Chrome driver that matches your Chrome version. Download a chromedriver <a href="https://chromedriver.chromium.org/downloads">here</a>.
