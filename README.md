@@ -2,6 +2,9 @@
 <div align="center">
   
 # Zefoy TikTok Automator
+<h1>
+🌟 Join my Discord server <a href="https://discord.gg/x6UX9qufVR">here</a> 🌟
+</h1>
 Automate TikTok follower bot, like bot, share bot, view bot and more using selenium. Click <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">here</a> to report bugs.
 
 ![image](https://user-images.githubusercontent.com/103281345/166081404-2ca2610e-90d7-44ee-bda5-66bb714dde24.png)
