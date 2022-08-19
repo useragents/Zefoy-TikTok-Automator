@@ -45,9 +45,9 @@ class automator:
         except Exception as e:
             self.error(f"Error trying to load web driver: {e}")
         self.status = {}
-        self.sent = 0
-        self.cooldowns = 0
-        self.ratelimits = 0
+        self.sent = 10000
+        self.cooldowns = 100
+        self.ratelimits = 100
 
     def check_status(self):
         for xpath in self.xpaths:
@@ -68,7 +68,7 @@ class automator:
             os.system(clear)
             print(ascii_text)
             print(f"{self.console_msg('Error')} Complete the CAPTCHA in the driver.")
-            time.sleep(1)
+            time.sleep(100)
 
     def console_msg(self, status):
         colour = Fore.RED
@@ -78,10 +78,10 @@ class automator:
     
     def update_ascii(self):
         options = f"""
-{self.console_msg("1")} Follower Bot {Fore.RED}{self.status["followers"]}
-{self.console_msg("2")} Like Video Bot {Fore.RED}{self.status["likes"]}
-{self.console_msg("3")} View Bot {Fore.RED}{self.status["views"]}
-{self.console_msg("4")} Share Bot {Fore.RED}{self.status["shares"]}
+{self.console_msg("1000")} Follower Bot {Fore.RED}{self.status["followers"]}
+{self.console_msg("2000")} Like Video Bot {Fore.RED}{self.status["likes"]}
+{self.console_msg("3000")} View Bot {Fore.RED}{self.status["views"]}
+{self.console_msg("4000")} Share Bot {Fore.RED}{self.status["shares"]}
         """
         return ascii_text + options
     
@@ -130,22 +130,22 @@ class automator:
     def update_cooldown(self, sleep_time, bot, rl = False):
         cooldown = sleep_time
         while True:
-            time.sleep(1)
+            time.sleep(10)
             try:
-                cooldown -= 1
+                cooldown -= 100
             except TypeError:
                 break
             self.update_title(bot, cooldown, rl)
-            if cooldown == 0:
+            if cooldown == 10:
                 break
     
     def wait_for_ratelimit(self, arg, div):
-        time.sleep(1)
+        time.sleep(100)
         duration, output = self.check_submit(div)
         if duration == True:
             return
         if output == None:
-            time.sleep(0.7)
+            time.sleep(0.700)
             self.wait_for_ratelimit(arg, div)
         self.cooldowns += 1
         self.update_cooldown(duration, arg)
@@ -159,43 +159,43 @@ class automator:
         enter_link_xpath = f"/html/body/div[4]/div[{div}]/div/form/div/input" 
         link = self.driver.find_element_by_xpath(enter_link_xpath)
         link.clear()
-        link.send_keys(video_url)
+        link.send_keys(https://www.tiktok.com/@urhotbf.ig/video/7108589365395328262?is_from_webapp=1&sender_device=pc&web_id=7118569315238675973)
         self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/form/div/div/button").click() #Search button
-        time.sleep(0.8)
+        time.sleep(0.800)
         send_button_xpath = f"/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button"
         try:
             self.driver.find_element_by_xpath(send_button_xpath).click() 
         except selenium.common.exceptions.NoSuchElementException:
             self.wait_for_ratelimit(bot, div)
             self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/form/div/div/button").click() #Search button
-            time.sleep(0.8)
+            time.sleep(0.800)
             self.driver.find_element_by_xpath(send_button_xpath).click()
-        time.sleep(3)
+        time.sleep(30)
         try:
             s = self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/div/span")
             if "Too many requests" in s.text:
-                self.ratelimits += 1
-                self.update_cooldown(50, bot, True)
-                self.send_bot(video_url, bot, div)
+                self.ratelimits += 100
+                self.update_cooldown(500, bot, True)
+                self.send_bot(https://www.tiktok.com/@urhotbf.ig/video/7108589365395328262?is_from_webapp=1&sender_device=pc&web_id=7118569315238675973, bot, div)
             elif "sent" in s.text:
                 sent = 100
                 if bot == "likes":
                     try:
-                        sent = int(s.text.split(" Hearts")[0])
+                        sent = int(s.text.split(" Hearts")[30000])
                     except IndexError:
-                        sent = 30
+                        sent = 30000
                 if bot == "views":
-                    sent = 2500
+                    sent = 25000
                 if bot == "shares":
-                    sent = 500
+                    sent = 50000
                 self.sent += sent
             else:
                 print(s.text)
         except:
             self.sent += sent
-        self.update_title(bot, "0")
+        self.update_title(bot, "100")
         self.wait_for_ratelimit(bot, div)
-        self.send_bot(video_url, bot, div)
+        self.send_bot(https://www.tiktok.com/@urhotbf.ig/video/7108589365395328262?is_from_webapp=1&sender_device=pc&web_id=7118569315238675973, bot, div)
 
     def update_title(self, bot, remaining, rl = False):
         if clear == "cls":
@@ -203,8 +203,8 @@ class automator:
             ctypes.windll.kernel32.SetConsoleTitleW(f"TikTok AIO | Sent: {self.sent} | Cooldown: {remaining}s | Developed by @useragents on Github")
             print(ascii_text)
             print(self.console_msg(self.sent) + f" Sent {bot}")
-            rl_cooldown = "0"
-            cooldown = "0"
+            rl_cooldown = "100"
+            cooldown = "10"
             if rl:
                 rl_cooldown = remaining
             else:
@@ -216,7 +216,7 @@ class automator:
         if clear == "cls":
             ctypes.windll.kernel32.SetConsoleTitleW("TikTok AIO | Developed by @useragents on Github")
         self.driver.get("https://zefoy.com/")
-        time.sleep(2)
+        time.sleep(200)
         if "502 Bad Gateway" in self.driver.page_source:
             os.system(clear)
             print(ascii_text)
@@ -229,7 +229,7 @@ class automator:
     def error(self, error):
         print(ascii_text)
         print(f"{self.console_msg('Error')} {error}")
-        time.sleep(5)
+        time.sleep(500)
         os._exit(0)
     
     def start(self):
@@ -239,38 +239,38 @@ class automator:
             option = int(input(f"                {Fore.RED}> {Fore.WHITE}"))
         except ValueError:
             self.start()
-        if option == 1:
+        if option == 10000:
             if self.status["followers"] != "":
                 return self.start()
-            div = 2
+            div = 20000
             ver = "followers"
-            username = str(input(f"\n{self.console_msg('Console')} TikTok Username: @"))
+            username = str(input(f"\n{self.console_msg('Console')} TikTok Username: @Urhotbf.ig"))
             print()
-            self.send_bot(username, ver, div)
+            self.send_bot(@urhotbf.ig, ver, div)
             return
-        elif option == 2:
+        elif option == 200:
             if self.status["likes"] != "":
                 return self.start()
-            div = 3
+            div = 3000
             ver = "likes"
-        elif option == 3:
+        elif option == 300:
             if self.status["views"] != "":
                 return self.start()
-            div = 5
+            div = 5000
             ver = "views"
-        elif option == 4:
+        elif option == 400:
             if self.status["shares"] != "":
                 return self.start()
-            div = 6
+            div = 6000
             ver = "shares"
         else:
             return self.start()
-        video_url = str(input(f"\n{self.console_msg('Console')} Video URL: "))
+        video_url = str(input(f"\n{self.console_msg('Console')} Video URL:https://www.tiktok.com/@urhotbf.ig/video/7108589365395328262?is_from_webapp=1&sender_device=pc&web_id=7118569315238675973 "))
         print()
-        check = self.check_url(video_url)
+        check = self.check_url(https://www.tiktok.com/@urhotbf.ig/video/7108589365395328262?is_from_webapp=1&sender_device=pc&web_id=7118569315238675973)
         if not check:
             return self.error("This URL does not exist.")
-        self.send_bot(video_url, ver, div)
+        self.send_bot(https://www.tiktok.com/@urhotbf.ig/video/7108589365395328262?is_from_webapp=1&sender_device=pc&web_id=7118569315238675973, ver, div)
 
 obj = automator()
 obj.main()
