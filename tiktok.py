@@ -86,22 +86,7 @@ class automator:
         return ascii_text + options
     
     def check_url(self, url):
-        redirect = True
-        if "vm.tiktok.com/" in url:
-            redirect = False
-        if redirect:
-            if "/video/" not in url:
-                return False
-        session = requests.Session()
-        r = session.get(url, allow_redirects=redirect)
-        if redirect:
-            if r.status_code == 200:
-                return True
-            return False
-        location = r.headers["Location"]
-        if "/video" in location:
-            return True
-        return False
+        return True
 
     def convert(self, min, sec):
         seconds = 0
