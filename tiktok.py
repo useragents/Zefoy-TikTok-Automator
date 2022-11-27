@@ -8,6 +8,7 @@ try:
 except ImportError:
     input("Error while importing modules. Please install the modules in requirements.txt")
 
+input("\nPress ENTER to start.\nThe owner of this bot @useragents does NOT OWN the SITE zefoy.com\nThis is simply an automator ONLY.")
 init(convert = True, autoreset = True)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
