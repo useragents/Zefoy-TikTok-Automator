@@ -1,5 +1,7 @@
 <br/>
 <div align="center">
+
+<b>I do not own Zefoy. I am not capable of making the services online or offline. This is simply an automator.</b>
   
 # Zefoy TikTok Automator
 <h1>
