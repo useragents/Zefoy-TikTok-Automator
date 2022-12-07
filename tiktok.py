@@ -94,7 +94,9 @@ class zefoy:
             return "https://discord.gg/NrnKpUYjWR"
         
     def send_bot(self, search_button, main_xpath, vid_info, div):
-        element = self.driver.find_element('xpath', main_xpath).send_keys(vid_info)
+        element = self.driver.find_element('xpath', main_xpath)
+        element.clear()
+        element.send_keys(vid_info)
         self.driver.find_element('xpath', search_button).click()
         time.sleep(2)
         ratelimit_seconds, full = self.check_submit(div)
@@ -102,8 +104,8 @@ class zefoy:
             self.main_sleep(ratelimit_seconds)
             self.driver.find_element('xpath', search_button).click()
             time.sleep(1.5)
-        time.sleep(3)
-        input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
+        time.sleep(2)
+        #input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
         send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
