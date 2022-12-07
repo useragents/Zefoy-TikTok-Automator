@@ -102,7 +102,6 @@ class zefoy:
             self.main_sleep(ratelimit_seconds)
             self.driver.find_element('xpath', search_button).click()
             time.sleep(1.5)
-        input("Waiting to send..")
         send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
