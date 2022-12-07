@@ -1,5 +1,3 @@
-#Developed by github.com/useragents
-#This script was made for educational purposes. I am not responsible for your actions using this script. This code is a few months old, hence why it may not appear as professional but still works to this day.
 try:
     import undetected_chromedriver as uc
     from colorama import Fore, init, Style
@@ -103,6 +101,8 @@ class zefoy:
         if "(s)" in str(full):
             self.main_sleep(ratelimit_seconds)
             self.driver.find_element('xpath', search_button).click()
+            time.sleep(1.5)
+        input("Waiting to send..")
         send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
