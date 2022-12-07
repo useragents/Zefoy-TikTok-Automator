@@ -1,106 +1,133 @@
 #Developed by github.com/useragents
 #This script was made for educational purposes. I am not responsible for your actions using this script. This code is a few months old, hence why it may not appear as professional but still works to this day.
 try:
-    from selenium import webdriver
-    import time, os, ctypes, requests
-    from colorama import Fore, init
-    import warnings, selenium, platform
+    import undetected_chromedriver as uc
+    from colorama import Fore, init, Style
+    import ctypes, platform, os, time
+    import selenium, requests, webbrowser
 except ImportError:
-    input("Error while importing modules. Please install the modules in requirements.txt")
+    input("You do not have all of the modules required installed.")
+    os._exit(1)
 
-input("\nPress ENTER to start.\nThe owner of this bot @useragents does NOT OWN the SITE zefoy.com\nThis is simply an automator ONLY.")
-init(convert = True, autoreset = True)
-warnings.filterwarnings("ignore", category=DeprecationWarning)
+text = """
+ ███████ ███████ ███████  ██████  ██    ██ 
+    ███  ██      ██      ██    ██  ██  ██  
+   ███   █████   █████   ██    ██   ████   
+  ███    ██      ██      ██    ██    ██    
+ ███████ ███████ ██       ██████     ██    """
 
-clear = "clear"
-if platform.system() == "Windows":
-    clear = "cls"
 
-os.system(clear)
+class zefoy:
 
-ascii_text = f"""{Fore.RED}
-                ████████▀▀▀████
-                ████████────▀██
-                ████████──█▄──█
-                ███▀▀▀██──█████
-                █▀──▄▄██──█████
-                █──█████──█████
-                █▄──▀▀▀──▄█████
-                ███▄▄▄▄▄███████ github.com/useragents
-"""
-
-class automator:
-    
     def __init__(self):
-        options = webdriver.ChromeOptions()
-        options.add_argument('--ignore-certificate-errors')
-        options.add_experimental_option("excludeSwitches", ["enable-logging"])
-        self.xpaths = {
-            "followers": "/html/body/div[4]/div[1]/div[3]/div/div[1]/div/button",
-            "likes": "/html/body/div[4]/div[1]/div[3]/div/div[2]/div/button",
-            "views": "/html/body/div[4]/div[1]/div[3]/div/div[4]/div/button",
-            "shares": "/html/body/div[4]/div[1]/div[3]/div/div[5]/div/button"
-        }
-        try:
-            self.driver = webdriver.Chrome(options = options)
-        except Exception as e:
-            self.error(f"Error trying to load web driver: {e}")
-        self.status = {}
+        self.driver = uc.Chrome()
+        self.url = "https://zefoy.com"
+        self.captcha_box = '/html/body/div[4]/div[2]/form/div/div'
+        self.clear = "clear"
+        if platform.system() == "Windows":
+            self.clear = "cls"
+        self.color = Fore.BLUE
         self.sent = 0
-        self.cooldowns = 0
-        self.ratelimits = 0
+        self.xpaths = {
+            "followers": "/html/body/div[4]/div[1]/div[3]/div[2]/div[1]/div/button",
+            "hearts": "/html/body/div[4]/div[1]/div[3]/div[2]/div[2]/div/button",
+            "comment_hearts": "/html/body/div[4]/div[1]/div[3]/div[2]/div[3]/div/button",
+            "views": "/html/body/div[4]/div[1]/div[3]/div[2]/div[4]/div/button",
+            "shares": "/html/body/div[4]/div[1]/div[3]/div[2]/div[5]/div/button",
+            "favorites": "/html/body/div[4]/div[1]/div[3]/div[2]/div[6]/div/button"
+        }
+        self.discord = "https://pastebin.com/raw/uB8UYqdh"
+        
+    def main(self):
+        os.system(self.clear)
+        self.change_title("TikTok Automator using zefoy.com | Github: @useragents")
+        print(self.color + text)
+        self.driver.get(self.url)
+        print("\n" + self._print("Waiting for Zefoy to load... 502 Error = Blocked country or VPN is on"))
+        self.wait_for_xpath(self.captcha_box)
+        print(self._print("Site loaded, enter the CAPTCHA to continue."))
+        print(self._print("Waiting for you..."))
+        self.wait_for_xpath(self.xpaths["followers"])
+        os.system(self.clear)
+        status = self.check_status()
+        print(self.color + text)
+        print()
+        print(self._print(f"Join our {self.color}Discord Server{Fore.WHITE} for exclusive FREE tools."))
+        print(self._print(f"You can also get updates when Zefoy updates the bots and more."))
+        print(self._print(f"Select your option below." + "\n"))
+        counter = 1
+        for thing in status:
+            print(self._print(f"{thing} {status[thing]}", counter))
+            counter += 1
+        print(self._print(f"Discord / Support", "7"))
+        option = int(input("\n" + self._print(f"")))
+        if option == 1:
+            div = "2"
+            self.driver.find_element("xpath", self.xpaths["followers"]).click()
+        elif option == 2:
+            div = "3"
+            self.driver.find_element("xpath", self.xpaths["hearts"]).click()
+        elif option == 3:
+            div = "4"
+            self.driver.find_element("xpath", self.xpaths["comment_hearts"]).click()
+        elif option == 4: #Views
+            div = "5"
+            self.driver.find_element("xpath", self.xpaths["views"]).click()
+        elif option == 5:
+            div = "6"
+            self.driver.find_element("xpath", self.xpaths["shares"]).click()
+        elif option == 6:
+            div = "7"
+            self.driver.find_element("xpath", self.xpaths["favorites"]).click()
+        elif option == 7:
+            webbrowser.open(self.get_discord())
+            os._exit(1)
+        else:
+            os._exit(1)
+        video_url_box = f'/html/body/div[4]/div[{div}]/div/form/div/input'
+        search_box = f'/html/body/div[4]/div[{div}]/div/form/div/div/button'
+        vid_info = input("\n" + self._print(f"Username/VideoURL: "))
+        self.send_bot(search_box, video_url_box, vid_info, div)
 
-    def check_status(self):
-        for xpath in self.xpaths:
-            value = self.xpaths[xpath]
-            element = self.driver.find_element_by_xpath(value)
-            if not element.is_enabled():
-                self.status.update({xpath: "[OFFLINE]"})
-            else:
-                self.status.update({xpath: ""})
-    
-    def check_for_captcha(self):
-        while True:
-            try:
-                if "Enter the word" not in self.driver.page_source:
-                    return
-            except:
-                return
-            os.system(clear)
-            print(ascii_text)
-            print(f"{self.console_msg('Error')} Complete the CAPTCHA in the driver.")
+    def get_discord(self):
+        try:
+            return requests.Session().get(self.discord).text.splitlines()[0]
+        except Exception:
+            return "https://discord.gg/NrnKpUYjWR"
+        
+    def send_bot(self, search_button, main_xpath, vid_info, div):
+        element = self.driver.find_element('xpath', main_xpath).send_keys(vid_info)
+        self.driver.find_element('xpath', search_button).click()
+        time.sleep(2)
+        ratelimit_seconds, full = self.check_submit(div)
+        if "(s)" in str(full):
+            self.main_sleep(ratelimit_seconds)
+            self.driver.find_element('xpath', search_button).click()
+        send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
+        self.driver.find_element('xpath', send_button).click()
+        self.sent += 1
+        print(self._print(f"Sent {self.sent} times."))
+        time.sleep(3)
+        self.send_bot(search_button, main_xpath, vid_info, div)
+
+    def main_sleep(self, delay):
+        while delay != 0:
             time.sleep(1)
-
-    def console_msg(self, status):
-        colour = Fore.RED
-        if status == "Success":
-            colour = Fore.GREEN
-        return f"                {Fore.WHITE}[{colour}{status}{Fore.WHITE}]"
-    
-    def update_ascii(self):
-        options = f"""
-{self.console_msg("1")} Follower Bot {Fore.RED}{self.status["followers"]}
-{self.console_msg("2")} Like Video Bot {Fore.RED}{self.status["likes"]}
-{self.console_msg("3")} View Bot {Fore.RED}{self.status["views"]}
-{self.console_msg("4")} Share Bot {Fore.RED}{self.status["shares"]}
-        """
-        return ascii_text + options
-    
-    def check_url(self, url):
-        return True
+            delay -= 1
+            self.change_title(f"TikTok Zefoy Automator using Zefoy.com | Cooldown: {delay}s | Github: @useragents")
 
     def convert(self, min, sec):
         seconds = 0
         if min != 0:
             answer = int(min) * 60
             seconds += answer
-        seconds += int(sec) + 15
+        seconds += int(sec) + 5
         return seconds
 
     def check_submit(self, div):
         remaining = f"/html/body/div[4]/div[{div}]/div/div/h4"
         try:
-            element = self.driver.find_element_by_xpath(remaining)
+            element = self.driver.find_element("xpath", remaining)
         except:
             return None, None
         if "READY" in element.text:
@@ -112,151 +139,34 @@ class automator:
             sleep_duration = self.convert(minutes, seconds)
             return sleep_duration, output
         return element.text, None
-    
-    def update_cooldown(self, sleep_time, bot, rl = False):
-        cooldown = sleep_time
+        
+    def check_status(self):
+        statuses = {}
+        for thing in self.xpaths:
+            value = self.xpaths[thing]
+            element = self.driver.find_element('xpath', value)
+            if not element.is_enabled():
+                statuses.update({thing: f"{Fore.RED}[OFFLINE]"})
+            else:
+                statuses.update({thing: f"{Fore.GREEN}[WORKS]"})
+        return statuses
+
+    def _print(self, msg, status = "-"):
+        return f" {Fore.WHITE}[{self.color}{status}{Fore.WHITE}] {msg}"
+
+    def change_title(self, arg):
+        if self.clear == "cls":
+            ctypes.windll.kernel32.SetConsoleTitleW(arg)
+
+    def wait_for_xpath(self, xpath):
         while True:
-            time.sleep(1)
             try:
-                cooldown -= 1
-            except TypeError:
-                break
-            self.update_title(bot, cooldown, rl)
-            if cooldown == 0:
-                break
-    
-    def wait_for_ratelimit(self, arg, div):
-        time.sleep(1)
-        duration, output = self.check_submit(div)
-        if duration == True:
-            return
-        if output == None:
-            time.sleep(0.7)
-            self.wait_for_ratelimit(arg, div)
-        self.cooldowns += 1
-        self.update_cooldown(duration, arg)
+                f = self.driver.find_element('xpath', xpath)
+                return True
+            except selenium.common.exceptions.NoSuchElementException:
+                pass
 
-    def send_bot(self, video_url, bot, div):
-        try:
-            self.driver.find_element_by_xpath(self.xpaths[bot]).click()
-            time.sleep(0.5)
-        except:
-            pass
-        enter_link_xpath = f"/html/body/div[4]/div[{div}]/div/form/div/input" 
-        link = self.driver.find_element_by_xpath(enter_link_xpath)
-        link.clear()
-        link.send_keys(video_url)
-        self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/form/div/div/button").click() #Search button
-        time.sleep(0.8)
-        send_button_xpath = f"/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button"
-        try:
-            self.driver.find_element_by_xpath(send_button_xpath).click() 
-        except selenium.common.exceptions.NoSuchElementException:
-            self.wait_for_ratelimit(bot, div)
-            self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/form/div/div/button").click() #Search button
-            time.sleep(0.8)
-            self.driver.find_element_by_xpath(send_button_xpath).click()
-        time.sleep(3)
-        try:
-            s = self.driver.find_element_by_xpath(f"/html/body/div[4]/div[{div}]/div/div/span")
-            if "Too many requests" in s.text:
-                self.ratelimits += 1
-                self.update_cooldown(50, bot, True)
-                self.send_bot(video_url, bot, div)
-            elif "sent" in s.text:
-                sent = 100
-                if bot == "likes":
-                    try:
-                        sent = int(s.text.split(" Hearts")[0])
-                    except IndexError:
-                        sent = 30
-                if bot == "views":
-                    sent = 2500
-                if bot == "shares":
-                    sent = 500
-                self.sent += sent
-            else:
-                print(s.text)
-        except:
-            self.sent += sent
-        self.update_title(bot, "0")
-        self.wait_for_ratelimit(bot, div)
-        self.send_bot(video_url, bot, div)
 
-    def update_title(self, bot, remaining, rl = False):
-        if clear == "cls":
-            os.system(clear)
-            ctypes.windll.kernel32.SetConsoleTitleW(f"TikTok AIO | Sent: {self.sent} | Cooldown: {remaining}s | Developed by @useragents on Github")
-            print(ascii_text)
-            print(self.console_msg(self.sent) + f" Sent {bot}")
-            rl_cooldown = "0"
-            cooldown = "0"
-            if rl:
-                rl_cooldown = remaining
-            else:
-                cooldown = remaining
-            print(self.console_msg(self.cooldowns) + f" Cooldowns {Fore.WHITE}[{Fore.RED}{cooldown}s{Fore.WHITE}]")
-            print(self.console_msg(self.ratelimits) + f" Ratelimits {Fore.WHITE}[{Fore.RED}{rl_cooldown}s{Fore.WHITE}]")
-
-    def main(self):
-        if clear == "cls":
-            ctypes.windll.kernel32.SetConsoleTitleW("TikTok AIO | Developed by @useragents on Github")
-        self.driver.get("https://zefoy.com/")
-        time.sleep(2)
-        if "502 Bad Gateway" in self.driver.page_source:
-            os.system(clear)
-            print(ascii_text)
-            input(f"{self.console_msg('Error')} This website does not allow VPN or proxy services.")
-            os._exit(0)
-        self.check_for_captcha()
-        self.check_status()
-        self.start()
-    
-    def error(self, error):
-        print(ascii_text)
-        print(f"{self.console_msg('Error')} {error}")
-        time.sleep(5)
-        os._exit(0)
-    
-    def start(self):
-        os.system(clear)
-        print(self.update_ascii())
-        try:
-            option = int(input(f"                {Fore.RED}> {Fore.WHITE}"))
-        except ValueError:
-            self.start()
-        if option == 1:
-            if self.status["followers"] != "":
-                return self.start()
-            div = 2
-            ver = "followers"
-            username = str(input(f"\n{self.console_msg('Console')} TikTok Username: @"))
-            print()
-            self.send_bot(username, ver, div)
-            return
-        elif option == 2:
-            if self.status["likes"] != "":
-                return self.start()
-            div = 3
-            ver = "likes"
-        elif option == 3:
-            if self.status["views"] != "":
-                return self.start()
-            div = 5
-            ver = "views"
-        elif option == 4:
-            if self.status["shares"] != "":
-                return self.start()
-            div = 6
-            ver = "shares"
-        else:
-            return self.start()
-        video_url = str(input(f"\n{self.console_msg('Console')} Video URL: "))
-        print()
-        check = self.check_url(video_url)
-        if not check:
-            return self.error("This URL does not exist.")
-        self.send_bot(video_url, ver, div)
-
-obj = automator()
+obj = zefoy()
 obj.main()
+input()
