@@ -98,19 +98,19 @@ class zefoy:
         element.clear()
         element.send_keys(vid_info)
         self.driver.find_element('xpath', search_button).click()
-        time.sleep(2)
+        time.sleep(3)
         ratelimit_seconds, full = self.check_submit(div)
         if "(s)" in str(full):
             self.main_sleep(ratelimit_seconds)
             self.driver.find_element('xpath', search_button).click()
-            time.sleep(1.5)
-        time.sleep(2)
+            time.sleep(2)
+        time.sleep(3)
         #input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
         send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
         print(self._print(f"Sent {self.sent} times."))
-        time.sleep(3)
+        time.sleep(4)
         self.send_bot(search_button, main_xpath, vid_info, div)
 
     def main_sleep(self, delay):
