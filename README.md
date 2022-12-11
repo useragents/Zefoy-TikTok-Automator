@@ -1,31 +1,26 @@
 <br/>
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/103281345/206057224-dc5d69e8-4612-40f9-b3a7-4415b03cd301.png)
+![image](https://user-images.githubusercontent.com/103281345/206921670-2a0f6ce6-10cb-4ea8-9924-d11f78e85fc7.png)
 
-<h1>
-🌟 Join my Discord server <a href="https://discord.gg/NrnKpUYjWR">here</a> 🌟
-</h1>
 
-![image](https://user-images.githubusercontent.com/103281345/206057350-c5ff1697-13a0-4c54-9865-79b15d73c1c4.png)
-
-  
 </div>
 
 
 --------------------------------------
 
-### Usage
+### How to use this Python script
 
-
-1. Download ZIP <a href="https://github.com/useragents/Zefoy-TikTok-Automator/archive/refs/heads/main.zip">here</a> and extract the ZIP
+1. Make sure Python is installed. Make sure you check the box "Add to PATH" on setup (This installs PIP)
+2. Install Google Chrome browser if it is not already
+3. Download the ZIP <a href="https://github.com/useragents/Zefoy-TikTok-Automator/archive/refs/heads/main.zip">here</a> and extract the ZIP
 2. Install requirements.txt by running the `Install Requirements.bat` file.
-3. Make sure Google Chrome browser is installed.
 4. Run the Python script file.
 
 ### MAIN ISSUES
 
-- If you're having an issue, make an issue <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">here</a> and please give the FULL error.
+- 502 Bad Gateway Error = This means Zefoy.com blocked it. This is because VPN or your country is not allowed.
+- REAL issues can be made <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">here</a>. Provide full error/traceback.
 - Useragents does not OWN the Zefoy website, this is simply an automator.
 - Join our Discord for other help.
 
