@@ -169,7 +169,7 @@ class zefoy:
             except selenium.common.exceptions.NoSuchElementException:
                 pass
 
-
-obj = zefoy()
-obj.main()
-input()
+if __name__ == "__main__":
+    obj = zefoy()
+    obj.main()
+    input()
