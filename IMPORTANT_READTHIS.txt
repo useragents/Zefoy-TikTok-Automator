@@ -1,0 +1,20 @@
+Here is the tutorial. Please read the bottom after done which shows a FAQ and common issues people have.
+
+Step 1 ---- Install Python
+
+Install Python from python.org website. You must check the box that says Add to PATH or something similiar.
+
+Step 2 ---- Install Requirements
+
+Run the Install Requirements.bat 
+
+Step 3 ---- Run Script
+
+Open the tiktok.py file with Python.
+
+
+YOU DO NOT NEED TO EDIT THE ACTUAL PYTHON SCRIPT (THE CODE)
+SOME YOUTUBERS PUT VIDEOS UP ON THEIR CHANNEL EDITING THE FILE, IT IS NOT NEEDED
+
+"pip is not found" You did not check the box on python setup to add to path. Reinstall python and do that
+"modules not installed" Run the .bat file
