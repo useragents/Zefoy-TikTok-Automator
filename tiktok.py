@@ -1,3 +1,6 @@
+#github.com/useragents
+#DO NOT EDIT THIS PYTHON FILE, SIMPLY RUN IT. EASY
+
 try:
     import undetected_chromedriver as uc
     from colorama import Fore, init, Style
