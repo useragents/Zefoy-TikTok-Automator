@@ -1,9 +1,12 @@
 <br/>
 <div align="center">
 
+<h1><b>‼️ NEW DISCORD SERVER! JOIN <a href="https://discord.gg/KRjZ58MfDD">HERE</a>! ‼️</b></h1>
+
 ![image](https://user-images.githubusercontent.com/103281345/206921670-2a0f6ce6-10cb-4ea8-9924-d11f78e85fc7.png)
 
-<h1><b>JOIN MY DISCORD <a href="https://discord.gg/NrnKpUYjWR">HERE</a>!</b></h1>
+
+
 </div>
 
 
