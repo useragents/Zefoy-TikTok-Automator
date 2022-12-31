@@ -1,34 +1,52 @@
+
 <br/>
 <div align="center">
+  <a href="https://github.com/useragents/Zefoy-TikTok-Automator">
+    <img src="https://www.edigitalagency.com.au/wp-content/uploads/TikTok-icon-glyph.png" alt="Logo" width="120" height="120">
+  </a>
+  
+  <h2 align="center">TikTok Automator Bot</h3>
 
-<h1><b>‼️ NEW DISCORD SERVER! JOIN <a href="https://discord.gg/KRjZ58MfDD">HERE</a>! ‼️</b></h1>
-
-![image](https://user-images.githubusercontent.com/103281345/206921670-2a0f6ce6-10cb-4ea8-9924-d11f78e85fc7.png)
-
-
-
+  <p align="center">
+    TikTok automator using zefoy.com for <b>followers, views, likes, shares and more</b>
+    <br />
+    <br />
+    <a href="https://discord.gg/KRjZ58MfDD">Join New Discord Server</a>
+    ·
+    <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">Request Feature</a>
+    
+  </p>
 </div>
+  
+---------------------------------------
 
+### Features
+* Follow Bot
+* View Bot
+* Like Bot
+* Share Bot
+* Favorite Video Bot
+* Comment Likes Bot
 
---------------------------------------
+---------------------------------------
 
-### How to use this Python script
+### How to use
 
-1. Make sure Python is installed. Make sure you check the box "Add to PATH" on setup (This installs PIP)
-2. Install Google Chrome browser if it is not already
-3. Download the ZIP <a href="https://github.com/useragents/Zefoy-TikTok-Automator/archive/refs/heads/main.zip">here</a> and extract the ZIP
-2. Install requirements.txt by running the `Install Requirements.bat` file.
-4. Run the Python script file.
+1. Install Python from <a href="https://www.python.org/ftp/python/3.9.2/python-3.9.2-amd64.exe">here</a>. It is super important that checkbox `Add Python to PATH` is checked on setup.
+2. After Python is installed, you need to install the required modules that are used for this script. 
+3. Open the file called `Install Requirements.bat`. This will do everything for you with no issues, simple.
+4. Open the `tiktok.py` file with Python. 
 
-### MAIN ISSUES
+---------------------------------------
+### Please note: Important
+1. I do not own the website `zefoy.com` and I am incapable of making some services online/offline.
+2. This Python project is simply an automator with selenium for a website I do not own.
+3. This script was made for educational purposes
+4. I am not responsible for your actions
 
-- 502 Bad Gateway Error = This means Zefoy.com blocked it. This is because VPN or your country is not allowed.
-- REAL issues can be made <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">here</a>. Provide full error/traceback.
-- Useragents does not OWN the Zefoy website, this is simply an automator.
-- Join our Discord for other help.
+---------------------------------------
+### Main Issues & Problems
 
-### Please note
-
-This script automates the website https://zefoy.com/ which is a website you can boost your TikTok followers/likes/shares/views. This script automates this specific website to constantly increase your engagement on TikTok instead of you doing it manually. This script was made for educational purposes. I am not responsible for your actions using this script. This code is a few months old, hence why it may not appear as professional but still works to this day.
-
- ![image](https://user-images.githubusercontent.com/103281345/166081531-5129cab9-5c21-4d5b-9195-d888e4243b0a.png)
+* Struggling to install Python or PIP? Watch this video <a href="https://youtu.be/dYfKJMPNMDw?t=52">here</a>. 
+* 502 Bad Gateway Error: `Zefoy.com blocked it either because of a VPN/proxy or maybe your country is blocked.`
+* Join our Discord for more help.
