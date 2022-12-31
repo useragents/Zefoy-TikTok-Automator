@@ -13,7 +13,7 @@
     <br />
     <a href="https://discord.gg/KRjZ58MfDD">Join New Discord Server</a>
     ·
-    <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">Request Feature</a>
+    <a href="https://github.com/useragents/Zefoy-TikTok-Automator/issues">Report Bugs</a>
     
   </p>
 </div>
