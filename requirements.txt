@@ -1,3 +1,0 @@
-selenium==4.1.3
-colorama==0.4.4
-requests==2.27.1
