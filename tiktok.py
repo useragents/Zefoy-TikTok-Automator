@@ -35,12 +35,12 @@ class zefoy:
         self.color = Fore.BLUE
         self.sent = 0
         self.xpaths = {
-            "followers": "/html/body/div[4]/div[1]/div[3]/div[2]/div[1]/div/button",
-            "hearts": "/html/body/div[4]/div[1]/div[3]/div[2]/div[2]/div/button",
-            "comment_hearts": "/html/body/div[4]/div[1]/div[3]/div[2]/div[3]/div/button",
-            "views": "/html/body/div[4]/div[1]/div[3]/div[2]/div[4]/div/button",
-            "shares": "/html/body/div[4]/div[1]/div[3]/div[2]/div[5]/div/button",
-            "favorites": "/html/body/div[4]/div[1]/div[3]/div[2]/div[6]/div/button"
+            "followers": "/html/body/div[5]/div[1]/div[3]/div[2]/div[1]/div/button",
+            "hearts": "/html/body/div[5]/div[1]/div[3]/div[2]/div[2]/div/button",
+            "comment_hearts": "/html/body/div[5]/div[1]/div[3]/div[2]/div[3]/div/button",
+            "views": "/html/body/div[5]/div[1]/div[3]/div[2]/div[4]/div/button",
+            "shares": "/html/body/div[5]/div[1]/div[3]/div[2]/div[5]/div/button",
+            "favorites": "/html/body/div[5]/div[1]/div[3]/div[2]/div[6]/div/button",
         }
         self.discord = "https://pastebin.com/raw/uB8UYqdh"
         
