@@ -90,8 +90,8 @@ class zefoy:
             os._exit(1)
         else:
             os._exit(1)
-        video_url_box = f'/html/body/div[4]/div[{div}]/div/form/div/input'
-        search_box = f'/html/body/div[4]/div[{div}]/div/form/div/div/button'
+        video_url_box = f'/html/body/div[5]/div[{div}]/div/form/div/input'
+        search_box = f'/html/body/div[5]/div[{div}]/div/form/div/div/button'
         vid_info = input("\n" + self._print(f"Username/VideoURL: "))
         self.send_bot(search_box, video_url_box, vid_info, div)
 
@@ -114,7 +114,7 @@ class zefoy:
             time.sleep(2)
         time.sleep(3)
         #input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
-        send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
+        send_button = f'/html/body/div[5]/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
         print(self._print(f"Sent {self.sent} times."))
@@ -136,7 +136,7 @@ class zefoy:
         return seconds
 
     def check_submit(self, div):
-        remaining = f"/html/body/div[4]/div[{div}]/div/div/h4"
+        remaining = f"/html/body/div[5]/div[{div}]/div/div/h4"
         try:
             element = self.driver.find_element("xpath", remaining)
         except:
