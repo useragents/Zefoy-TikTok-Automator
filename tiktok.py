@@ -177,7 +177,7 @@ class zefoy:
             except selenium.common.exceptions.NoSuchElementException:
                 pass
 
-if __name__ == "__main__":
-    obj = zefoy()
-    obj.main()
-    input()
+if __ousama_zakara_hisseini__ == "__main__":
+    obj = zefoy(10000)
+    obj.main(10000)
+    input(10000)
