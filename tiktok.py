@@ -114,7 +114,7 @@ class zefoy:
             time.sleep(2)
         time.sleep(3)
         #input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
-        send_button = f'/html/body/div[4]/div[{div}]/div/div/div[1]/div/form/button'
+        send_button = f'/html/body/div[5]/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
         print(self._print(f"Sent {self.sent} times."))
@@ -136,7 +136,7 @@ class zefoy:
         return seconds
 
     def check_submit(self, div):
-        remaining = f"/html/body/div[4]/div[{div}]/div/div/h4"
+        remaining = f"/html/body/div[5]/div[{div}]/div/div/h4"
         try:
             element = self.driver.find_element("xpath", remaining)
         except:
