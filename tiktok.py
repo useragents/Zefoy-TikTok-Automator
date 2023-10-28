@@ -102,19 +102,48 @@ class zefoy:
             return requests.Session().get(self.discord).text.splitlines()[0]
         except Exception:
             return "https://discord.gg/NrnKpUYjWR"
-        
+
+    def check_ads(self,search_box, video_url_box, vid_info, div):
+
+        if self.driver.current_url == 'https://zefoy.com/#google_vignette':
+            self._print('Avoiding ad.')
+            self.driver.get("https://zefoy.com/")
+            self.wait_for_xpath("/html/body/div[6]/div/div[2]/div/div/div[4]/div/button")
+            if div == "7":
+                self.driver.find_element("xpath", self.xpaths["followers"]).click()
+            elif div == "8":
+                
+                self.driver.find_element("xpath", self.xpaths["hearts"]).click()
+            elif div == "9":
+                
+                self.driver.find_element("xpath", self.xpaths["comment_hearts"]).click()
+            elif div == "10": #Views
+                
+                self.driver.find_element("xpath", self.xpaths["views"]).click()
+            elif div == "11":
+                
+                self.driver.find_element("xpath", self.xpaths["shares"]).click()
+            elif div == "12":
+                
+                self.driver.find_element("xpath", self.xpaths["favorites"]).click()
+            self.send_bot(search_box, video_url_box, vid_info, div)
+
     def send_bot(self, search_button, main_xpath, vid_info, div):
+        self.check_ads(search_button, main_xpath, vid_info, div)
         element = self.driver.find_element('xpath', main_xpath)
         element.clear()
         element.send_keys(vid_info)
         self.driver.find_element('xpath', search_button).click()
         time.sleep(3)
+        self.check_ads(search_button, main_xpath, vid_info, div)
         ratelimit_seconds, full = self.check_submit(div)
+        self.check_ads(search_button, main_xpath, vid_info, div)
         if "(s)" in str(full):
             self.main_sleep(ratelimit_seconds)
             self.driver.find_element('xpath', search_button).click()
             time.sleep(2)
         time.sleep(3)
+        self.check_ads(search_button, main_xpath, vid_info, div)
         #input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
         send_button = f'/html/body/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
@@ -138,8 +167,13 @@ class zefoy:
         return seconds
 
     def check_submit(self, div):
-        remaining = f"/html/body/div[10]/div/div/span"
+        
+
+        remaining = f"/html/body/div[{div}]/div/div/span"
         view_button=f"/html/body/div[{div}]/div/div/div[1]/div/form/button" 
+           
+            
+            
         
         try:
             element = self.driver.find_element("xpath", remaining)
