@@ -11,6 +11,8 @@ try:
     from colorama import Fore, init, Style
     import ctypes, platform, os, time
     import selenium, requests, webbrowser
+
+    
 except ImportError:
     input("You do not have all of the modules required installed.")
     os._exit(1)
@@ -28,19 +30,19 @@ class zefoy:
     def __init__(self):
         self.driver = uc.Chrome()
         self.url = "https://zefoy.com"
-        self.captcha_box = '/html/body/div[4]/div[2]/form/div/div'
+        self.captcha_box = '/html/body/div[5]/div[2]/form/div/div'
         self.clear = "clear"
         if platform.system() == "Windows":
             self.clear = "cls"
         self.color = Fore.BLUE
         self.sent = 0
         self.xpaths = {
-            "followers": "/html/body/div[5]/div[1]/div[3]/div[2]/div[1]/div/button",
-            "hearts": "/html/body/div[5]/div[1]/div[3]/div[2]/div[2]/div/button",
-            "comment_hearts": "/html/body/div[5]/div[1]/div[3]/div[2]/div[3]/div/button",
-            "views": "/html/body/div[5]/div[1]/div[3]/div[2]/div[4]/div/button",
-            "shares": "/html/body/div[5]/div[1]/div[3]/div[2]/div[5]/div/button",
-            "favorites": "/html/body/div[5]/div[1]/div[3]/div[2]/div[6]/div/button",
+            "followers": "/html/body/div[6]/div/div[2]/div/div/div[2]/div/button",
+            "hearts": "/html/body/div[6]/div/div[2]/div/div/div[3]/div/button",
+            "comment_hearts": "/html/body/div[6]/div/div[2]/div/div/div[4]/div/button",
+            "views": "/html/body/div[6]/div/div[2]/div/div/div[5]/div/button",
+            "shares": "/html/body/div[6]/div/div[2]/div/div/div[6]/div/button",
+            "favorites": "/html/body/div[6]/div/div[2]/div/div/div[7]/div/button",
         }
         self.discord = "https://pastebin.com/raw/uB8UYqdh"
         
@@ -68,30 +70,30 @@ class zefoy:
         print(self._print(f"Discord / Support", "7"))
         option = int(input("\n" + self._print(f"")))
         if option == 1:
-            div = "2"
+            div = "7"
             self.driver.find_element("xpath", self.xpaths["followers"]).click()
         elif option == 2:
-            div = "3"
+            div = "8"
             self.driver.find_element("xpath", self.xpaths["hearts"]).click()
         elif option == 3:
-            div = "4"
+            div = "9"
             self.driver.find_element("xpath", self.xpaths["comment_hearts"]).click()
         elif option == 4: #Views
-            div = "5"
+            div = "10"
             self.driver.find_element("xpath", self.xpaths["views"]).click()
         elif option == 5:
-            div = "6"
+            div = "11"
             self.driver.find_element("xpath", self.xpaths["shares"]).click()
         elif option == 6:
-            div = "7"
+            div = "12"
             self.driver.find_element("xpath", self.xpaths["favorites"]).click()
         elif option == 7:
             webbrowser.open(self.get_discord())
             os._exit(1)
         else:
             os._exit(1)
-        video_url_box = f'/html/body/div[4]/div[{div}]/div/form/div/input'
-        search_box = f'/html/body/div[4]/div[{div}]/div/form/div/div/button'
+        video_url_box = f'/html/body/div[{div}]/div/form/div/input'
+        search_box = f'/html/body/div[{div}]/div/form/div/div/button'
         vid_info = input("\n" + self._print(f"Username/VideoURL: "))
         self.send_bot(search_box, video_url_box, vid_info, div)
 
@@ -100,25 +102,54 @@ class zefoy:
             return requests.Session().get(self.discord).text.splitlines()[0]
         except Exception:
             return "https://discord.gg/NrnKpUYjWR"
-        
+
+    def check_ads(self,search_box, video_url_box, vid_info, div):
+
+        if self.driver.current_url == 'https://zefoy.com/#google_vignette':
+            self._print('Avoiding ad.')
+            self.driver.get("https://zefoy.com/")
+            self.wait_for_xpath("/html/body/div[6]/div/div[2]/div/div/div[4]/div/button")
+            if div == "7":
+                self.driver.find_element("xpath", self.xpaths["followers"]).click()
+            elif div == "8":
+                
+                self.driver.find_element("xpath", self.xpaths["hearts"]).click()
+            elif div == "9":
+                
+                self.driver.find_element("xpath", self.xpaths["comment_hearts"]).click()
+            elif div == "10": #Views
+                
+                self.driver.find_element("xpath", self.xpaths["views"]).click()
+            elif div == "11":
+                
+                self.driver.find_element("xpath", self.xpaths["shares"]).click()
+            elif div == "12":
+                
+                self.driver.find_element("xpath", self.xpaths["favorites"]).click()
+            self.send_bot(search_box, video_url_box, vid_info, div)
+
     def send_bot(self, search_button, main_xpath, vid_info, div):
+        self.check_ads(search_button, main_xpath, vid_info, div)
         element = self.driver.find_element('xpath', main_xpath)
         element.clear()
         element.send_keys(vid_info)
         self.driver.find_element('xpath', search_button).click()
         time.sleep(3)
+        self.check_ads(search_button, main_xpath, vid_info, div)
         ratelimit_seconds, full = self.check_submit(div)
+        self.check_ads(search_button, main_xpath, vid_info, div)
         if "(s)" in str(full):
             self.main_sleep(ratelimit_seconds)
             self.driver.find_element('xpath', search_button).click()
             time.sleep(2)
         time.sleep(3)
+        self.check_ads(search_button, main_xpath, vid_info, div)
         #input('Press ENTER to continue. This may cause errors, please ss zefoy before incase.')
-        send_button = f'/html/body/div[5]/div[{div}]/div/div/div[1]/div/form/button'
+        send_button = f'/html/body/div[{div}]/div/div/div[1]/div/form/button'
         self.driver.find_element('xpath', send_button).click()
         self.sent += 1
         print(self._print(f"Sent {self.sent} times."))
-        time.sleep(4)
+        time.sleep(15)
         self.send_bot(search_button, main_xpath, vid_info, div)
 
     def main_sleep(self, delay):
@@ -136,11 +167,20 @@ class zefoy:
         return seconds
 
     def check_submit(self, div):
-        remaining = f"/html/body/div[5]/div[{div}]/div/div/h4"
+        
+
+        remaining = f"/html/body/div[{div}]/div/div/span"
+        view_button=f"/html/body/div[{div}]/div/div/div[1]/div/form/button" 
+           
+            
+            
+        
         try:
             element = self.driver.find_element("xpath", remaining)
         except:
-            return None, None
+            self.wait_for_xpath(view_button)
+            self.driver.find_element("xpath", view_button).click()
+            self.wait_for_xpath(remaining)
         if "READY" in element.text:
             return True, True
         if "seconds for your next submit" in element.text:
