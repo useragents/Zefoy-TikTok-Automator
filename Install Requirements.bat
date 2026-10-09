@@ -1,5 +1,14 @@
-pip install undetected-chromedriver==3.1.7
-pip install colorama==0.4.6
-pip install selenium==4.7.2
-pip install requests==2.27.1
+@echo off
+setlocal
+
+py -m pip install -r "%~dp0requirements.txt"
+if errorlevel 1 (
+    echo.
+    echo Failed to install requirements. Make sure Python and pip are installed.
+    pause
+    exit /b 1
+)
+
+echo.
+echo Requirements installed successfully.
 pause

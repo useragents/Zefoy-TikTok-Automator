@@ -32,10 +32,11 @@
 
 ### How to use
 
-1. Install Python from <a href="https://www.python.org/ftp/python/3.9.2/python-3.9.2-amd64.exe">here</a>. It is super important that checkbox `Add Python to PATH` is checked on setup.
-2. After Python is installed, you need to install the required modules that are used for this script. 
-3. Open the file called `Install Requirements.bat`. This will do everything for you with no issues, simple.
-4. Open the `tiktok.py` file with Python. 
+1. Install Python 3.10 or newer and Google Chrome. On Windows, enable `Add Python to PATH` during setup.
+2. Install the dependencies from this repository:
+   - Windows: run `Install Requirements.bat`.
+   - macOS/Linux: run `python3 -m pip install -r requirements.txt`.
+3. Start the script with `python tiktok.py` (or `py tiktok.py` on Windows).
 
 ---------------------------------------
 ### Please note: Important

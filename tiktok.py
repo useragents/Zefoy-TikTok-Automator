@@ -6,14 +6,26 @@
 #DO NOT EDIT IT, THIS IS LATEST VERSION AND IT DOES EVERYTHING FOR YOU
 #SIMPLY RUN IT WITH PYTHON AFTER INSTRUCTIONS ARE DONE.
 
+import ctypes
+import os
+import platform
+import sys
+import time
+import webbrowser
+
 try:
     import undetected_chromedriver as uc
-    from colorama import Fore, init, Style
-    import ctypes, platform, os, time
-    import selenium, requests, webbrowser
-except ImportError:
-    input("You do not have all of the modules required installed.")
-    os._exit(1)
+    import requests
+    from colorama import Fore, init
+    from selenium.common.exceptions import NoSuchElementException
+except ImportError as exc:
+    print(
+        f"Missing dependency ({exc.name}). Install the requirements with "
+        f"`{sys.executable} -m pip install -r requirements.txt`."
+    )
+    raise SystemExit(1) from exc
+
+init(autoreset=True)
 
 text = """
  ███████ ███████ ███████  ██████  ██    ██ 
@@ -139,7 +151,7 @@ class zefoy:
         remaining = f"/html/body/div[5]/div[{div}]/div/div/h4"
         try:
             element = self.driver.find_element("xpath", remaining)
-        except:
+        except NoSuchElementException:
             return None, None
         if "READY" in element.text:
             return True, True
@@ -174,7 +186,7 @@ class zefoy:
             try:
                 f = self.driver.find_element('xpath', xpath)
                 return True
-            except selenium.common.exceptions.NoSuchElementException:
+            except NoSuchElementException:
                 pass
 
 if __name__ == "__main__":
